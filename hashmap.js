@@ -104,11 +104,31 @@ function HashMap() {
     return bucket.containsHashKey(key);
   }
 
+  function remove(key) {
+    const hashCode = hash(key);
+    const index = hashCode % capacity;
+    const bucket = buckets[index];
+
+    if (bucket.size() === 0) {
+      return false;
+    }
+
+    const keyLocation = bucket.findHashKey(key);
+
+    if (keyLocation == null) {
+      return false;
+    } else {
+      bucket.removeAt(keyLocation);
+      return true;
+    }
+  }
+
   return {
     buckets,
     set,
     get,
     has,
+    remove,
   }
 }
 

@@ -9,3 +9,7 @@ console.log(hashmap.has('Carlos'));
 console.log(hashmap.has('Doesnt exist'));
 console.log(hashmap.get('Carlos'));
 console.log(hashmap.get('Doesnt exist'));
+hashmap.set('Remove', 'Remove me');
+console.log(hashmap.get('Remove'));
+console.log(hashmap.remove('Remove'));
+console.log(hashmap.has('Remove'));
