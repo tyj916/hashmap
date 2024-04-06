@@ -285,4 +285,18 @@ class HashSet {
       this.buckets.push(LinkedList());
     }
   }
+
+  keys() {
+    return this.buckets.reduce((accumulator, bucket) => {
+      let tmp = bucket.at(0);
+      const array = [];
+
+      while (tmp) {
+        array.push(tmp.value);
+        tmp = tmp.nextNode;
+      }
+
+      return accumulator.concat(array);
+    }, []);
+  }
 }

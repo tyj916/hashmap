@@ -43,6 +43,7 @@ hashset.set('test');
 hashset.set('remove me');
 console.log(hashset.length());
 console.log(hashset.has('remove me'));
+console.log(hashset.keys());
 hashset.remove('remove me');
 console.log(hashset.has('remove me'));
 hashset.clear();
