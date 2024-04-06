@@ -272,4 +272,10 @@ class HashSet {
       return true;
     }
   }
+
+  length() {
+    return this.buckets.reduce((accumulator, bucket) => {
+      return accumulator + bucket.size();
+    }, 0);
+  }
 }
