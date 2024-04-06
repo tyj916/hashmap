@@ -67,8 +67,10 @@ function HashMap() {
 
     const keyLocation = bucket.findHashKey(key);
 
-    if (keyLocation != null) {
-      console.log(bucket.at(keyLocation));
+    if (keyLocation == null) {
+      bucket.append(keyValuePair);
+    } else {
+      bucket.at(keyLocation).value.value = value;
     }
   }
 
