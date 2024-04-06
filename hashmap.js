@@ -28,9 +28,48 @@ function HashLinkedList() {
     return null;
   }
 
+  function getHashKeys() {
+    let tmp = linkedList.at(0);
+    const array = [];
+  
+    while (tmp) {
+      array.push(tmp.value.key);
+      tmp = tmp.nextNode;
+    }
+  
+    return array;
+  }
+
+  function getHashValues() {
+    let tmp = linkedList.at(0);
+    const array = [];
+  
+    while (tmp) {
+      array.push(tmp.value.value);
+      tmp = tmp.nextNode;
+    }
+  
+    return array;
+  }
+
+  function entries() {
+    let tmp = linkedList.at(0);
+    const array = [];
+  
+    while (tmp) {
+      array.push([tmp.value.key, tmp.value.value]);
+      tmp = tmp.nextNode;
+    }
+  
+    return array;
+  }
+
   return Object.assign({}, linkedList, { 
     containsHashKey,
     findHashKey,
+    getHashKeys,
+    getHashValues,
+    entries,
    });
 }
 
@@ -59,6 +98,7 @@ function HashMap() {
     const index = hashCode % capacity;
     const bucket = buckets[index];
     const keyValuePair = {key, value};
+    const hashLoad = capacity * loadFactor;
 
     if (bucket.size() === 0) {
       bucket.prepend(keyValuePair);
@@ -137,6 +177,26 @@ function HashMap() {
     }
   }
 
+  function keys() {
+    return buckets.reduce((accumulator, bucket) => {
+      return accumulator.concat(bucket.getHashKeys());
+    }, []);
+  }
+
+  function values() {
+    return buckets.reduce((accumulator, bucket) => {
+      return accumulator.concat(bucket.getHashValues());
+    }, []);
+  }
+
+  function entries() {
+    const array = [];
+    buckets.forEach((bucket) => {
+      if (bucket.size() > 0) array.push(bucket.entries());
+    });
+    return array;
+  }
+
   return {
     buckets,
     set,
@@ -145,6 +205,9 @@ function HashMap() {
     remove,
     length,
     clear,
+    keys,
+    values,
+    entries
   }
 }
 
