@@ -45,4 +45,5 @@ console.log(hashset.length());
 console.log(hashset.has('remove me'));
 hashset.remove('remove me');
 console.log(hashset.has('remove me'));
+hashset.clear();
 console.log(hashset.length());

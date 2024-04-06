@@ -278,4 +278,11 @@ class HashSet {
       return accumulator + bucket.size();
     }, 0);
   }
+
+  clear() {
+    this.buckets.length = 0;
+    for (let i = 0; i < this.capacity; i++) {
+      this.buckets.push(LinkedList());
+    }
+  }
 }
