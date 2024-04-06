@@ -74,9 +74,28 @@ function HashMap() {
     }
   }
 
+  function get(key) {
+    const hashCode = hash(key);
+    const index = hashCode % capacity;
+    const bucket = buckets[index];
+
+    if (bucket.size() === 0) {
+      return null;
+    }
+
+    const keyLocation = bucket.findHashKey(key);
+
+    if (keyLocation == null) {
+      return null;
+    } else {
+      return bucket.at(keyLocation).value.value;
+    }
+  }
+
   return {
     buckets,
     set,
+    get,
   }
 }
 
