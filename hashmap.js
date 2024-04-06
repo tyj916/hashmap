@@ -250,4 +250,12 @@ class HashSet {
       bucket.append(key);
     }
   }
+
+  has(key) {
+    const hashCode = hash(key);
+    const index = hashCode % this.capacity;
+    const bucket = this.buckets[index];
+
+    return bucket.contains(key);
+  }
 }

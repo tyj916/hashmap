@@ -40,3 +40,5 @@ console.log(hashmap.get('Carlos'));
 // hashset test
 const hashset = new HashSet();
 hashset.set('test');
+console.log(hashset.has('test'));
+console.log(hashset.has('doesnt exist'));
