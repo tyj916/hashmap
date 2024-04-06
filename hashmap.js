@@ -129,6 +129,14 @@ function HashMap() {
     }, 0);
   }
 
+  function clear() {
+    buckets.length = 0;
+
+    for (let i = 0; i < capacity; i++) {
+      buckets.push(HashLinkedList());
+    }
+  }
+
   return {
     buckets,
     set,
@@ -136,6 +144,7 @@ function HashMap() {
     has,
     remove,
     length,
+    clear,
   }
 }
 

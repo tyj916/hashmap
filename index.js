@@ -20,3 +20,6 @@ hashmap.set('Test4', 'Test length');
 hashmap.set('Test5', 'Test length');
 hashmap.set('Test6', 'Test length');
 console.log(hashmap.length());
+hashmap.clear();
+console.log(hashmap.length());
+console.log(hashmap.get('Carlos'));
