@@ -92,10 +92,23 @@ function HashMap() {
     }
   }
 
+  function has(key) {
+    const hashCode = hash(key);
+    const index = hashCode % capacity;
+    const bucket = buckets[index];
+
+    if (bucket.size() === 0) {
+      return false;
+    }
+
+    return bucket.containsHashKey(key);
+  }
+
   return {
     buckets,
     set,
     get,
+    has,
   }
 }
 
