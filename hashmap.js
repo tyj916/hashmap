@@ -15,7 +15,23 @@ function HashLinkedList() {
     return false;
   }
 
-  return Object.assign({}, linkedList, { containsHashKey });
+  function findHashKey(key) {
+    let tmp = linkedList.at(0);
+    let count = 0;
+  
+    while (tmp) {
+      if (tmp.value.key === key) return count;
+      tmp = tmp.nextNode;
+      count++;
+    }
+  
+    return null;
+  }
+
+  return Object.assign({}, linkedList, { 
+    containsHashKey,
+    findHashKey,
+   });
 }
 
 function hash(key) {
@@ -46,13 +62,14 @@ function HashMap() {
 
     if (bucket.size() === 0) {
       bucket.prepend(keyValuePair);
+      return;
     }
 
-    if (bucket.containsHashKey(key)) {
-      console.log('test');
-    }
+    const keyLocation = bucket.findHashKey(key);
 
-    console.log(bucket.at(0));
+    if (keyLocation != null) {
+      console.log(bucket.at(keyLocation));
+    }
   }
 
   return {
