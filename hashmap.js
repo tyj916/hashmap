@@ -123,12 +123,19 @@ function HashMap() {
     }
   }
 
+  function length() {
+    return buckets.reduce((accumulator, bucket) => {
+      return accumulator + bucket.size();
+    }, 0);
+  }
+
   return {
     buckets,
     set,
     get,
     has,
     remove,
+    length,
   }
 }
 
