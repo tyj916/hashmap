@@ -95,7 +95,6 @@ function HashMap() {
 
   function expandCapacity() {
     const allEntries = entries();
-    console.log(allEntries);
     buckets.length = 0;
     capacity *= 2;
 
@@ -103,11 +102,11 @@ function HashMap() {
       buckets.push(HashLinkedList());
     }
 
-    // allEntries.forEach((entry) => {
-    //   set(entry[0], entry[1]);
-    // });
+    allEntries.forEach((entry) => {
+      set(entry[0], entry[1]);
+    });
 
-    // console.log('Capacity expanded. Current capacity: ' + buckets.length());
+    console.log('Capacity expanded. Current capacity: ' + buckets.length);
   }
 
   function set(key, value) {
