@@ -93,12 +93,34 @@ function HashMap() {
     buckets.push(HashLinkedList());
   }
 
+  function expandCapacity() {
+    const allEntries = entries();
+    console.log(allEntries);
+    buckets.length = 0;
+    capacity *= 2;
+
+    for (let i = 0; i < capacity; i++) {
+      buckets.push(HashLinkedList());
+    }
+
+    // allEntries.forEach((entry) => {
+    //   set(entry[0], entry[1]);
+    // });
+
+    // console.log('Capacity expanded. Current capacity: ' + buckets.length());
+  }
+
   function set(key, value) {
     const hashCode = hash(key);
     const index = hashCode % capacity;
     const bucket = buckets[index];
     const keyValuePair = {key, value};
     const hashLoad = capacity * loadFactor;
+
+    if (length() > hashLoad) {
+      console.log('Maximum load reached!');
+      expandCapacity();
+    }
 
     if (bucket.size() === 0) {
       bucket.prepend(keyValuePair);
@@ -190,11 +212,9 @@ function HashMap() {
   }
 
   function entries() {
-    const array = [];
-    buckets.forEach((bucket) => {
-      if (bucket.size() > 0) array.push(bucket.entries());
-    });
-    return array;
+    return buckets.reduce((accumulator, bucket) => {
+      return accumulator.concat(bucket.entries());
+    }, []);
   }
 
   return {
