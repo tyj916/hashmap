@@ -1,5 +1,7 @@
-import { HashMap } from './hashmap.js';
+import { HashMap, HashSet } from './hashmap.js';
 
+
+/** hash map test
 const hashmap = HashMap();
 
 hashmap.set('Carlos', 'I am the old value');
@@ -33,3 +35,8 @@ console.log(hashmap.length());
 hashmap.clear();
 console.log(hashmap.length());
 console.log(hashmap.get('Carlos'));
+*/
+
+// hashset test
+const hashset = new HashSet();
+hashset.set('test');

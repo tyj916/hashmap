@@ -1,5 +1,5 @@
 import { LinkedList } from "./linkedLists.js";
-export { HashMap };
+export { HashMap, HashSet };
 
 function HashLinkedList() {
   const linkedList = LinkedList();
@@ -230,3 +230,24 @@ function HashMap() {
   }
 }
 
+class HashSet {
+  constructor() {
+    this.buckets = [];
+    this.capacity = 16;
+    this.loadFactor = 0.75;  
+
+    for (let i = 0; i < this.capacity; i++) {
+      this.buckets.push(LinkedList());
+    }
+  }
+
+  set(key) {
+    const hashCode = hash(key);
+    const index = hashCode % this.capacity;
+    const bucket = this.buckets[index];
+
+    if (!bucket.contains(key)) {
+      bucket.append(key);
+    }
+  }
+}
