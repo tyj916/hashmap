@@ -258,4 +258,18 @@ class HashSet {
 
     return bucket.contains(key);
   }
+
+  remove(key) {
+    const hashCode = hash(key);
+    const index = hashCode % this.capacity;
+    const bucket = this.buckets[index];
+    const keyLocation = bucket.find(key);
+    
+    if (keyLocation === null) {
+      return false;
+    } else {
+      bucket.removeAt(keyLocation);
+      return true;
+    }
+  }
 }
